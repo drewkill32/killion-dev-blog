@@ -19,14 +19,17 @@ const { pageTitle } = Astro.props as Props;
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
     <title>{pageTitle}</title>
+    <style>
+      .container {
+        max-width: 80vw;
+        margin: 1rem auto;
+      }
+    </style>
   </head>
   <body>
     <Header />
-    <h1>{pageTitle}</h1>
-    <slot />
-    <Footer />
-    <script>
-      import "../scripts/menu.js";
-    </script>
+    <div class="container">
+      <slot />
+    </div>
   </body>
 </html>

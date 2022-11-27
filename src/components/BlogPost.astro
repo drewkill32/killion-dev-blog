@@ -2,11 +2,82 @@
 interface Props {
   url: string | undefined;
   title: string;
+  image: string;
+  imageAlt?: string;
+  excerpt?: string;
 }
 
-const { url, title } = Astro.props as Props;
+const { url, title, image, imageAlt, excerpt } = Astro.props as Props;
 ---
 
-<li>
-  <a href={url}>{title}</a>
-</li>
+<div class="card">
+  <a class="title" href={url}>{title}</a>
+  <img src={image} alt={imageAlt} />
+  <p>
+    {excerpt}
+  </p>
+  <div class="read-more">
+    <a href={url}
+      ><p>Read More</p>
+      <svg
+        width="40"
+        height="12"
+        viewBox="0 0 40 12"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path d="M40 6L30 0.226497V11.7735L40 6ZM0 7H31V5H0V7Z" fill="#D80B77"
+        ></path>
+      </svg>
+    </a>
+  </div>
+</div>
+
+<style>
+  .card {
+    background-color: white;
+    padding: 1rem;
+    border-radius: 6px;
+    display: flex;
+    gap: 1rem;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0px 8px 7px 0px rgba(0, 0, 0, 0.25);
+  }
+  .read-more {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+  }
+  .read-more a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    color: var(--secondary-500);
+    text-decoration: none;
+  }
+  .card img {
+    max-width: 80%;
+    object-fit: contain;
+    aspect-ratio: 16 / 9;
+    background-color: hsla(0, 0%, 72%, 0.062);
+    box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.123);
+  }
+  .title {
+    text-decoration: none;
+    color: var(--gray-500);
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+  }
+  p {
+    font-size: 1.3rem;
+  }
+  @media (max-width: 568px) {
+    p {
+      font-size: 1rem;
+    }
+  }
+</style>

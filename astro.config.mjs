@@ -1,9 +1,13 @@
-import { defineConfig } from 'astro/config';
-
-// https://astro.build/config
-import preact from "@astrojs/preact";
+import { defineConfig } from "astro/config";
+import { addExcerpt } from "./addExcerpt";
+import image from "@astrojs/image";
+import mdx from "@astrojs/mdx";
 
 // https://astro.build/config
 export default defineConfig({
-  integrations: [preact()]
+  markdown: {
+    extendDefaultPlugins: true,
+    remarkPlugins: [addExcerpt]
+  },
+  integrations: [image(), mdx()]
 });

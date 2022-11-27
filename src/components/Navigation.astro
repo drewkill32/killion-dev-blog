@@ -1,6 +1,31 @@
 <div class="nav-links">
   <a href="/">Home</a>
+  <a href="/contact">Contact</a>
   <a href="/about">About</a>
-  <a href="/blog">Blog</a>
-  <a href="/tags">Tags</a>
 </div>
+
+<style>
+  .nav-links {
+    width: 100%;
+    background-color: var(--primary-500);
+    margin: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 32px;
+  }
+
+  .nav-links a {
+    text-align: center;
+    padding: 15px 0;
+    color: var(--secondary-300);
+    text-decoration: none;
+    text-transform: uppercase;
+    height: 100%;
+  }
+
+  .nav-links a:hover,
+  .nav-links a:focus {
+    color: var(--secondary-500);
+  }
+</style>

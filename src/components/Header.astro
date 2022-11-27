@@ -1,13 +1,47 @@
 ---
-import Hambuger from "./Hambuger.astro";
 import Navigation from "./Navigation.astro";
-import ThemeIcon from "./ThemeIcon.astro";
 ---
 
 <header>
+  <div class="title-container">
+    <img
+      class="profile"
+      src="https://res.cloudinary.com/stpetepickem/image/upload/c_crop,g_face,w_200/v1669334166/nMKn5CFV_400x400_pfbbzu.jpg"
+      alt="profile pic"
+    />
+    <div class="title">
+      <h3>Drew Killion</h3>
+      <p>Application Architect</p>
+    </div>
+  </div>
   <nav>
-    <Hambuger />
-    <ThemeIcon />
     <Navigation />
   </nav>
 </header>
+
+<style>
+  header {
+    margin-top: 2rem;
+  }
+  .profile {
+    width: 60px;
+    height: 60px;
+    border-radius: 100%;
+    margin-right: 12px;
+  }
+  .title-container {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    margin-bottom: 16px;
+  }
+
+  .title {
+    flex-direction: column;
+    display: flex;
+    justify-content: center;
+  }
+  .title p {
+    margin-top: -6px;
+  }
+</style>

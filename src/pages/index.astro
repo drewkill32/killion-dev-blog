@@ -1,10 +1,43 @@
 ---
-import Greeting from "../components/Greeting";
+import BlogPost from "../components/BlogPost.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
-const pageTitle = "HomePage";
+const posts = await Astro.glob("../pages/posts/*.md");
+const pageTitle = "Blog";
+
+const sortedPosts = posts.sort((a, b) => {
+  const aPubDate = new Date(a.frontmatter.pubDate);
+  const bPubDate = new Date(b.frontmatter.pubDate);
+  //TODO: deal with invalid dates
+  if (aPubDate < bPubDate) {
+    return 1;
+  }
+  if (aPubDate > bPubDate) {
+    return -1;
+  }
+  return 0;
+});
 ---
 
 <BaseLayout pageTitle={pageTitle}>
-  <h2>My awesome blog subtitle</h2>
-  <Greeting client:load messages={["Hej", "Hallo", "Hola", "Habari"]} />
+  <div class="post-container">
+    {
+      sortedPosts.map((post) => (
+        <BlogPost
+          url={post.url}
+          title={post.frontmatter.title}
+          image={post.frontmatter.image.url}
+          imageAlt={post.frontmatter.image.alt}
+          excerpt={post.frontmatter.excerpt}
+        />
+      ))
+    }
+  </div>
 </BaseLayout>
+
+<style>
+  .post-container {
+    display: flex;
+    flex-direction: column;
+    gap: 2.2rem;
+  }
+</style>
